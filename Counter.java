@@ -1,0 +1,31 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
+// Main Class
+
+public class Counter
+{
+
+  private int value;
+
+  public Counter(int n)
+  {
+    this.value = n;
+  }
+
+  public int getAndIncrement()
+  {
+    int temp;
+    synchronized(this)
+    {
+      temp = value;
+      value = temp + 1;
+    }
+    return temp;
+  }
+
+  public void resetCounter()
+  {
+    value = 2;
+  }
+}
