@@ -8,24 +8,26 @@ import java.io.*;
 
 public class FindPrime
 {
+
+    // Single-Threaded Implementation of getting primes
     public static ArrayList<Integer> getPrimes(int n)
     {
-      Boolean[] boolArray = new Boolean[n + 1];
+      boolean[] boolArray =  new boolean[n + 1];
       Arrays.fill(boolArray, Boolean.TRUE);
       for (int i = 2; i * i <= n; i+=1)
       {
-        if (boolArray[i].equals(Boolean.TRUE))
+        if (boolArray[i] == true)
         {
           for (int j = i * i; j <= n; j+=i)
           {
-            boolArray[j] = Boolean.FALSE;
+            boolArray[j] = false;
           }
         }
       }
       ArrayList<Integer> result = new ArrayList<Integer>();
       for (int i = 2; i <= n; i+=1)
       {
-        if (boolArray[i].equals(Boolean.TRUE))
+        if (boolArray[i] == true)
         {
           result.add(i);
         }
@@ -37,19 +39,21 @@ public class FindPrime
     public static void main(String[] args) throws IOException
     {
       // ArrayList<Integer> array = getPrimes(100000000);
-      Sieve sieve = new Sieve(100000000);
+      long start = System.currentTimeMillis();
+      Sieve sieve = new Sieve(Integer.parseInt(args[0]));
       PrintWriter output = new PrintWriter("primes.txt");
       long sum = 0;
-      float time = sieve.getPrimesBetter();
-      ArrayList<Integer> primeList = sieve.getList();
+      ArrayList<Integer> primeList = sieve.getPrimesBetter();
       int size = primeList.size();
       for (Integer i : primeList)
       {
         sum += i.longValue();
       }
+      long end = System.currentTimeMillis();
+      float timeElapsed = (end - start) / 1000F;
 
 
-      output.print(time + " s");
+      output.print(timeElapsed + "s");
       output.print(" ");
       output.print(primeList.size());
       output.print(" ");
