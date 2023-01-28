@@ -3,7 +3,7 @@
 # Compiling and Running
 To compile and run the program, open the command terminal to the file location of the repository.
 Once in the repository, run the command "javac FindPrime.java Sieve.java Counter.java".
-After that command, run "java FindPrime <integer>", where integer is the number of the maximum number you want to find the primes up to.
+After that command, run "java FindPrime (integer)", where integer is the number of the maximum number you want to find the primes up to.
 
 # General Approach and Reasoning
 To find the primes, I used an implementation of the Sieve of Eratosthenes in java. In my implementation, I use a boolean array to keep track of whether all the numbers from 2 to a given maximum are prime. When beginning, the boolean array is instantiated, with every number unmarked. After the array is instantiated, 8 threads are spawned to perform the process of marking non-prime numbers. Each thread uses a shared counter to prevent any repeating numbers among them. This also allows each thread to perform around the same amount of work, as threads that take less time to mark for their prime numbers will end up performing the sieve procedure on more prime numbers overall. When all threads have completed, each step of the Sieve of Eratosthenes will have been performed, leaving only prime numbers unmarked in the boolean array. Afterwards, the array can be used to add all prime numbers, which are unmarked, into a list.
