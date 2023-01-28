@@ -57,11 +57,9 @@ public class Sieve
     }
   }
 
-  public float getPrimesBetter(){
+  public ArrayList<Integer> getPrimesBetter(){
     ArrayList<Thread> threads = new ArrayList<Thread>();
 
-
-    long start = System.currentTimeMillis();
     for(int i = 0; i < 8; i++)
     {
       Thread primeFinder
@@ -81,9 +79,7 @@ public class Sieve
       }
     }
     addPrimes();
-    long end = System.currentTimeMillis();
-    float sec = (end - start) / 1000F;
-    return sec;
+    return getList();
   }
 
   public void addPrimes()
